@@ -21,6 +21,11 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
         self.figure = Figure()
         self.axes = self.figure.add_subplot(111)
         self.canvas = FigureCanvas(self, -1, self.figure)
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL) # init the sizer with horizontal
+        self.sizer.Add(self.canvas, 1, wx.EXPAND) # give sizer a size which is canvas
+        self.SetSizer(self.sizer) # call the sizer
+
         self.axes.set_xlabel("Time")
         self.axes.set_ylabel("A/D")
 
