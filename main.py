@@ -5,10 +5,12 @@ from matplotlib.figure import Figure
 import numpy as np
 
 
-class LeftPanel (wx.Panel): # class need inhertance of wx.Panel
-    def __init__(self, parent):
+class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
+    def __init__(self, parent, right):
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
         #wx.Button(self, -1, "Button lift")
+
+        self.graph = right # this graph will have reference to figure panel
 
 
 # add toggle button
@@ -37,8 +39,11 @@ class LeftPanel (wx.Panel): # class need inhertance of wx.Panel
     def SetButtonRange(self, event):
         min = self.textboxMinYAxis.GetValue()
         max =  self.textboxMaxYAxis.GetValue()
-        print("min", min)
-        print("max", max)
+        self.graph.changeAxes(min,max) # change the
+
+        # a function in figure panel called change axes, this function can change the figure axes.
+        # now, I call this function in control pannel because I create reference called graph.
+        #once I call the changeAxes, I pass two value to this function. Then I let function do the rest
 
     def OnSend(self, event):
         value = self.textboxSampleTime.GetValue()
@@ -58,11 +63,11 @@ class LeftPanel (wx.Panel): # class need inhertance of wx.Panel
 
 
 
-
 class RightPanel (wx.Panel): # class need inhertance of wx.Panel
     def __init__(self, parent):
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
        #wx.Button(self, -1, "Button right")
+
 
         self.figure = Figure()
         self.axes = self.figure.add_subplot(111)
@@ -76,15 +81,16 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
         self.axes.set_ylabel("A/D")
 
 
-
-
     def draw(self):
         x = np.arange(0, 2, 0.01)
         y = np.sin(np.pi * x)
         self.axes.plot(x, y)
 
-
-
+    def changeAxes(self, min, max): # data min and max value,
+        self.axes.set_ylim(float(min), float(max))
+        self.canvas.draw() # refresh the canvas
+        # In this function, I recive two value from control panel
+        # I use these two value redraw the canvas
 
 
 class Main(wx.Frame):
@@ -93,19 +99,12 @@ class Main(wx.Frame):
 
         # split the window
         splitter = wx.SplitterWindow(self)
-        left = LeftPanel(splitter) # need to create two panel
         right = RightPanel(splitter)
+        left = LeftPanel(splitter, right) # give a control panel a reference to figure panel
         splitter.SplitVertically(left,right)
         splitter.SetMinimumPaneSize(200)
 
         right.draw()
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
