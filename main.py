@@ -26,6 +26,20 @@ class LeftPanel (wx.Panel): # class need inhertance of wx.Panel
         self.buttonSend = wx.Button(self, -1, "Send", pos=(70,300), size = (50,-1))
         self.buttonSend.Bind(wx.EVT_BUTTON, self.OnSend)
 
+        labelMinY = wx.StaticText(self, -1, "Min Y", pos = (10, 400))
+        self.textboxMinYAxis = wx.TextCtrl(self, -1, "0", pos=(50, 400))
+        labelMaxY = wx.StaticText(self, -1, "Max Y", pos=(10, 450))
+        self.textboxMaxYAxis = wx.TextCtrl(self, -1, "1024", pos=(50, 450))
+
+        self.buttonRange = wx.Button(self, -1, "Set Y Axis", pos= (10, 500))
+        self.buttonRange.Bind(wx.EVT_BUTTON, self.SetButtonRange)
+
+    def SetButtonRange(self, event):
+        min = self.textboxMinYAxis.GetValue()
+        max =  self.textboxMaxYAxis.GetValue()
+        print("min", min)
+        print("max", max)
+
     def OnSend(self, event):
         value = self.textboxSampleTime.GetValue()
         print(value)
