@@ -10,14 +10,25 @@ class LeftPanel (wx.Panel): # class need inhertance of wx.Panel
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
         #wx.Button(self, -1, "Button lift")
 
+
+# add toggle button
         self.togglebuttonStart = wx.ToggleButton(self, id=-1, label="Start", pos=(10,10))
         self.togglebuttonStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnStartClick)
 
+# add check box
         labelChannels = wx.StaticText(self, -1, "Input:", pos=(10, 200))
         self.cb1 = wx.CheckBox(self, -1, label="A0", pos=(10, 220))
         self.cb2 = wx.CheckBox(self, -1, label="A1", pos=(10, 240))
+        self.Bind(wx.EVT_CHECKBOX, self.OnChecked) # bind the check box
 
-        self.Bind(wx.EVT_CHECKBOX, self.OnChecked)
+# create time box
+        self.textboxSampleTime = wx.TextCtrl(self, -1, "1000", pos=(10,300), size=(50,-1))# -1 means defult
+        self.buttonSend = wx.Button(self, -1, "Send", pos=(70,300), size = (50,-1))
+        self.buttonSend.Bind(wx.EVT_BUTTON, self.OnSend)
+
+    def OnSend(self, event):
+        value = self.textboxSampleTime.GetValue()
+        print(value)
 
     def OnChecked(self, event):
         cb = event.GetEventObject()
