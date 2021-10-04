@@ -9,3 +9,10 @@ class LoadCSV():
         summary = pd.read_csv(self.name)
         return summary
 
+
+
+
+
+
+
+LoadCSV()
