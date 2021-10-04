@@ -36,7 +36,7 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         self.textboxMaxYAxis = wx.TextCtrl(self, -1, "2020", pos=(100, 430))
 
 # make search button an overall search key
-        self.buttonRange = wx.Button(self, -1, "Search", pos= (50, 480), size = (300,50))
+        self.buttonRange = wx.Button(self, -1, "Search", pos= (25, 480), size = (300,50))
         self.buttonRange.Bind(wx.EVT_BUTTON, self.SetButtonRange)
 
 

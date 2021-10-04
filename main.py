@@ -5,7 +5,7 @@ from rightPanelTwo import *
 
 class Main(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, parent = None, title = "title", size = (800,600)) # from wx
+        wx.Frame.__init__(self, parent = None, title = "title", size = (1080,600)) # from wx
 
         # load database
         loadData = LoadCSV().load()
@@ -17,7 +17,7 @@ class Main(wx.Frame):
         rightTwo = RightPanelTwo(splitter,loadData)
         left = LeftPanel(splitter,rightTwo, loadData) # give a control panel a reference to figure panel
         splitter.SplitVertically(left, rightTwo)
-        splitter.SetMinimumPaneSize(200)
+        splitter.SetMinimumPaneSize(350)
 
        # right.draw() # draw the function, should move to other place
         rightTwo.drawTable() # set the table as defult
