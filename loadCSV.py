@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 class LoadCSV():
     def __init__(self):
@@ -11,8 +13,4 @@ class LoadCSV():
 
 
 
-
-
-
-
-LoadCSV()
+#LoadCSV()

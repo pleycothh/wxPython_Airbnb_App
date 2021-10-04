@@ -1,11 +1,12 @@
 import wx
 
 class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
-    def __init__(self, parent, right, loadData):
+    def __init__(self, parent, rightOne, rightTwo, loadData):
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
         #wx.Button(self, -1, "Button lift")
 
-        self.graph = right # this graph will have reference to figure panel
+        self.graphOne = rightOne
+        self.graphTwo = rightTwo # this graph will have reference to figure panel
         self.data_summary = loadData
 
 
@@ -46,7 +47,7 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         print(summary.name)
 
 
-        self.graph.changeAxes(min,max) # change the figure
+        self.graphOne.changeAxes(min,max) # change the figure
 
 
 
@@ -73,7 +74,10 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         value = self.toggleDrawStart.GetValue()
         if value:
             self.toggleDrawStart.SetLabel("Map")
-            self.graph.drawMap()
+            self.graphOne.Hide()
+            self.graphTwo.Show()
         else:
             self.toggleDrawStart.SetLabel("Table")
-            self.graph.drawTable()
+            #self.graphTwo.drawTable()
+            self.graphOne.Show()
+            self.graphTwo.Hide()

@@ -1,15 +1,14 @@
 import wx
-import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
-import pandas as pd
 
 
 
 
-class RightPanel (wx.Panel): # class need inhertance of wx.Panel
+
+class RightPanelOne (wx.Panel): # class need inhertance of wx.Panel
     def __init__(self, parent, loadData):
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
 
@@ -22,7 +21,7 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
     def drawMap(self):
 
         self.figure = Figure() # what does this do?
-        self.axes = self.figure.add_subplot(111)
+        self.axes = self.figure.add_subplot(111) # first row, column and graph
         self.canvas = FigureCanvas(self, -1, self.figure)
 
         self.sizer = wx.BoxSizer(wx.HORIZONTAL) # init the sizer with horizontal
@@ -43,17 +42,3 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
         self.canvas.draw() # refresh the canvas
         # In this function, I recive two value from control panel
         # I use these two value redraw the canvas
-
-################################## table display ####################################
-    def drawTable(self):
-        summary = self.data_summary # load the entire data
-        print(summary.name)
-
-
-
-    def changeSuber(self,newSuber):
-        pass
-    def changeDate(self,newDate):
-        pass
-    def changeKeyWord(self, newKey):
-        pass
