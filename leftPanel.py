@@ -73,6 +73,7 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         value = self.toggleDrawStart.GetValue()
         if value:
             self.toggleDrawStart.SetLabel("Map")
-            self.graph.draw()
+            self.graph.drawMap()
         else:
             self.toggleDrawStart.SetLabel("Table")
+            self.graph.drawTable()

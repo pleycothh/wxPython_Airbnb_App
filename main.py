@@ -16,7 +16,7 @@ class Main(wx.Frame):
 
         # split the window
         splitter = wx.SplitterWindow(self)
-        right = RightPanel(splitter)
+        right = RightPanel(splitter,loadData)
         left = LeftPanel(splitter, right, loadData) # give a control panel a reference to figure panel
         splitter.SplitVertically(left,right)
         splitter.SetMinimumPaneSize(200)

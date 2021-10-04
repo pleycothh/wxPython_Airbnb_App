@@ -1,4 +1,5 @@
 import wx
+import wx.grid
 import matplotlib
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -6,10 +7,12 @@ import numpy as np
 
 
 class RightPanel (wx.Panel): # class need inhertance of wx.Panel
-    def __init__(self, parent):
+    def __init__(self, parent, loadData):
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
+       # wx.grid.PyGridTableBase.__init__(self)
        #wx.Button(self, -1, "Button right")
 
+        self.data_summary = loadData
 
         self.figure = Figure()
         self.axes = self.figure.add_subplot(111)
@@ -23,7 +26,7 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
         self.axes.set_ylabel("A/D")
 
 
-    def draw(self):
+    def drawMap(self):
         x = np.arange(0, 2, 0.01)
         y = np.sin(np.pi * x)
         self.axes.plot(x, y)
@@ -35,3 +38,15 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
         self.canvas.draw() # refresh the canvas
         # In this function, I recive two value from control panel
         # I use these two value redraw the canvas
+
+################################## table display ####################################
+    def drawTable(self):
+        summary = self.data_summary # load the entire data
+        print(summary.name)
+
+    def changeSuber(self,newSuber):
+        pass
+    def changeDate(self,newDate):
+        pass
+    def changeKeyWord(self, newKey):
+        pass
