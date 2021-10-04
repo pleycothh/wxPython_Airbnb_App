@@ -1,11 +1,11 @@
 import wx
 
 class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
-    def __init__(self, parent, rightOne, rightTwo, loadData):
+    def __init__(self, parent, rightTwo, loadData):
         wx.Panel.__init__(self, parent=parent) # pass the split window to parent
         #wx.Button(self, -1, "Button lift")
 
-        self.graphOne = rightOne
+        #self.graphOne = rightOne
         self.graphTwo = rightTwo # this graph will have reference to figure panel
         self.data_summary = loadData
 
@@ -15,7 +15,7 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         self.toggleDarkStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnDarkClick)
 
 # add second toggle button
-        self.toggleDrawStart = wx.ToggleButton(self, id=-1, label = 'Table',pos=(100,20)) # deleted label = 'Start' here
+        self.toggleDrawStart = wx.ToggleButton(self, id=-1, label = 'Map',pos=(100,20)) # deleted label = 'Start' here
         self.toggleDrawStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnMapClick)
 
 # add check box
@@ -39,6 +39,8 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         self.buttonRange = wx.Button(self, -1, "Search", pos= (50, 480), size = (300,50))
         self.buttonRange.Bind(wx.EVT_BUTTON, self.SetButtonRange)
 
+
+
     def SetButtonRange(self, event):
         min = self.textboxMinYAxis.GetValue()
         max =  self.textboxMaxYAxis.GetValue()
@@ -47,7 +49,7 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         print(summary.name)
 
 
-        self.graphOne.changeAxes(min,max) # change the figure
+        self.graphTwo.changeAxes(min,max) # change the figure
 
 
 
@@ -73,11 +75,10 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
     def OnMapClick(self, event): # this function is switch map view
         value = self.toggleDrawStart.GetValue()
         if value:
-            self.toggleDrawStart.SetLabel("Map")
-            self.graphOne.Hide()
-            self.graphTwo.Show()
-        else:
             self.toggleDrawStart.SetLabel("Table")
-            #self.graphTwo.drawTable()
-            self.graphOne.Show()
-            self.graphTwo.Hide()
+            print("go map")
+        else:
+            self.toggleDrawStart.SetLabel("Map")
+            self.graphTwo.drawTable()
+
+

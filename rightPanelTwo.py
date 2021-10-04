@@ -14,27 +14,28 @@ class RightPanelTwo (wx.Panel): # class need inhertance of wx.Panel
 
         self.data_summary = loadData
 
-        ################################## table display ####################################
-        def drawTable(self):
-            summary = self.data_summary  # load the entire data
-            print(summary.values)
-            ####################################
-            mygrid = grid.Grid(self)
-            mygrid.CreateGrid(26, 9)
 
-            sizer = wx.BoxSizer(wx.VERTICAL)
-            sizer.Add(mygrid, 1, wx.EXPAND)
-            self.SetSizer(sizer)
-
-            self.canvas.draw()
-
+    ################################## table display ####################################
+    def drawTable(self):
+        summary = self.data_summary  # load the entire data
+        print(summary.values)
         ####################################
+        mygrid = grid.Grid(self)
+        mygrid.CreateGrid(26, 9)
 
-        def changeSuber(self, newSuber):
-            pass
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(mygrid, 1, wx.EXPAND)
+        self.SetSizer(sizer)
+        self.Fit()
 
-        def changeDate(self, newDate):
-            pass
 
-        def changeKeyWord(self, newKey):
-            pass
+    ####################################
+
+    def changeSuber(self, newSuber):
+        pass
+
+    def changeDate(self, newDate):
+        pass
+
+    def changeKeyWord(self, newKey):
+        pass

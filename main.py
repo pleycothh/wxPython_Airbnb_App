@@ -13,13 +13,14 @@ class Main(wx.Frame):
         # split the window
         splitter = wx.SplitterWindow(self)
 
-        rightOne = RightPanelOne(splitter,loadData)
+       # rightOne = RightPanelOne(splitter,loadData)
         rightTwo = RightPanelTwo(splitter,loadData)
-        left = LeftPanel(splitter, rightOne,rightTwo, loadData) # give a control panel a reference to figure panel
-        splitter.SplitVertically(left,rightOne, rightTwo)
+        left = LeftPanel(splitter,rightTwo, loadData) # give a control panel a reference to figure panel
+        splitter.SplitVertically(left, rightTwo)
         splitter.SetMinimumPaneSize(200)
 
        # right.draw() # draw the function, should move to other place
+        rightTwo.drawTable() # set the table as defult
 
 
 if __name__ == "__main__":
