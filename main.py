@@ -12,7 +12,7 @@ class Main(wx.Frame):
         wx.Frame.__init__(self, parent = None, title = "title", size = (800,600)) # from wx
 
         # load database
-        loadData = LoadCSV()
+        loadData = LoadCSV().load()
 
         # split the window
         splitter = wx.SplitterWindow(self)
