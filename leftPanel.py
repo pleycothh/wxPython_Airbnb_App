@@ -10,12 +10,12 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
 
 
 # add toggle button
-        self.togglebuttonStart = wx.ToggleButton(self, id=-1, label = 'light',pos=(10,20)) # deleted label = 'Start' here
-        self.togglebuttonStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnStartClick)
+        self.toggleDarkStart = wx.ToggleButton(self, id=-1, label = 'light',pos=(10,20)) # deleted label = 'Start' here
+        self.toggleDarkStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnDarkClick)
 
 # add second toggle button
-        self.togglebuttonStart = wx.ToggleButton(self, id=-1, label = 'Table',pos=(100,20)) # deleted label = 'Start' here
-        self.togglebuttonStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnStartClick)
+        self.toggleDrawStart = wx.ToggleButton(self, id=-1, label = 'Table',pos=(100,20)) # deleted label = 'Start' here
+        self.toggleDrawStart.Bind(wx.EVT_TOGGLEBUTTON, self.OnMapClick)
 
 # add check box
         labelChannels = wx.StaticText(self, -1, "Suber:", pos=(10, 110))
@@ -62,9 +62,17 @@ class LeftPanel (wx.Panel): # class need inheritance of wx.Panel
         cb = event.GetEventObject()
         print("%s is clicked" % (cb.GetLabel()))
 
-    def OnStartClick(self, event):
-        value = self.togglebuttonStart.GetValue()
+    def OnDarkClick(self, event): # this function is swich light mode
+        value = self.toggleDarkStart.GetValue()
         if value:
-            self.togglebuttonStart.SetLabel("Dark")
+            self.toggleDarkStart.SetLabel("Dark")
         else:
-            self.togglebuttonStart.SetLabel("Light")
+            self.toggleDarkStart.SetLabel("Light")
+
+    def OnMapClick(self, event): # this function is switch map view
+        value = self.toggleDrawStart.GetValue()
+        if value:
+            self.toggleDrawStart.SetLabel("Map")
+            self.graph.draw()
+        else:
+            self.toggleDrawStart.SetLabel("Table")

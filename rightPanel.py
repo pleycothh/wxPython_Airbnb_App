@@ -27,6 +27,8 @@ class RightPanel (wx.Panel): # class need inhertance of wx.Panel
         x = np.arange(0, 2, 0.01)
         y = np.sin(np.pi * x)
         self.axes.plot(x, y)
+        print("draw")
+        self.canvas.draw() # update the draw
 
     def changeAxes(self, min, max): # data min and max value,
         self.axes.set_ylim(float(min), float(max))

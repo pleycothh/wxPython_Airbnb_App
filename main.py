@@ -21,7 +21,7 @@ class Main(wx.Frame):
         splitter.SplitVertically(left,right)
         splitter.SetMinimumPaneSize(200)
 
-        right.draw()
+       # right.draw() # draw the function, should move to other place
 
 
 if __name__ == "__main__":
